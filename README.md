@@ -4,7 +4,7 @@ Cowrie is a JavaScript utility that allows you to add, subtract, multiply, divid
 # Installation
 Cowrie requires [Node.js](https://nodejs.org/) v10+ to run.
 ```sh
-$ npm install --save cowrie
+$ npm install --save @cowrie/cowrie
 ```
 
 # Usage

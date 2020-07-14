@@ -12,8 +12,8 @@
         "type": "git",
         "url": "https://github.com/cowrie-shells/cowrie"
     },
-    "engines": {
-        "node": ">=10.0.0"
+    "engine": {
+        "node": ">= 0.11"
     },
     "main": "dist/index.js",
     "module": "src/index.js",
@@ -21,13 +21,13 @@
         "test": "jest",
         "test:debug": "jest --watch",
         "lint": "eslint src/**/*.js",
+        "prepublish": "npm run build",
         "build": "webpack --config build/webpack.prod.js",
         "debug": "webpack-dev-server --config build/webpack.dev.js"
     },
     "keywords": [
         "currency",
         "money",
-        "cowry",
         "cowry",
         "cowrie",
         "JavaScript"
