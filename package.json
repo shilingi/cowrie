@@ -3,14 +3,14 @@
     "version": "1.0.0-beta",
     "license": "MIT",
     "description": "Cowrie is a JavaScript utility that allows you to add, subtract, multiply, divide, sort & partition monetary values",
-    "homepage": "https://github.com/cowrie-shells/cowrie#readme",
+    "homepage": "https://github.com/cowrie-io/cowrie#readme",
     "bugs": {
-        "url": "https://github.com/cowrie-shells/cowrie/issues",
+        "url": "https://github.com/cowrie-io/cowrie/issues",
         "email": "howardmnengwa@gmail.com"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/cowrie-shells/cowrie"
+        "url": "https://github.com/cowrie-io/cowrie"
     },
     "engine": {
         "node": ">= 0.11"
