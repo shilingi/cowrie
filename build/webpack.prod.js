@@ -14,5 +14,6 @@ module.exports = merge(common, {
         library: 'Cowrie',
         libraryTarget: 'umd',
         libraryExport: 'default',
+        globalObject: 'this',
     },
 });
