@@ -41,7 +41,7 @@ jobs:
                 scope: "@cowrie-io"
             - run: |
                 npm ci
-                echo registry=https://npm.pkg.github.com/ >> .npmrc
+                echo registry=https://npm.pkg.github.com/cowrie-io >> .npmrc
                 npm publish
               env:
                 NODE_AUTH_TOKEN: ${{secrets.PUBLISH_TO_GITHUB_TOKEN}}
