@@ -1,4 +1,4 @@
-name: Continous Integration Pipeline
+name: Tests Pipeline
 
 on:
     pull_request:

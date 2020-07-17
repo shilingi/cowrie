@@ -1,7 +1,7 @@
 # Cowrie
 Cowrie is a JavaScript utility that allows you to add, subtract, multiply, divide, sort & partition monetary values
 
-![Releases Pipeline](https://github.com/cowrie-io/cowrie/workflows/Continous%20Deployment%20Pipeline/badge.svg)
+![](https://github.com/cowrie-io/cowrie/workflows/Releases%20Pipeline/badge.svg)
 
 # Installation
 Cowrie requires [Node.js](https://nodejs.org/) v10+ to run.
