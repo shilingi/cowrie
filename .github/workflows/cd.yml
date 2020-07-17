@@ -5,16 +5,6 @@ on:
         types: [created]
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v1
-              with:
-                node-version: 12
-            - run: |
-                npm ci
-                npm test
     publish-npm:
         needs: test
         runs-on: ubuntu-latest
@@ -22,11 +12,11 @@ jobs:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
               with:
-                node-version: 12
-                registry-url: https://registry.npmjs.org
-                scope: "@cowrie"
+                  node-version: 12
+                  registry-url: https://registry.npmjs.org
+                  scope: "@cowrie"
             - run: |
-                npm ci
-                npm publish --access public
-                env:
-                    NODE_AUTH_TOKEN: ${{secrets.PUBLISH_TO_NPM_TOKEN}}
+                  npm ci
+                  npm publish --access public
+                  env:
+                      NODE_AUTH_TOKEN: ${{secrets.PUBLISH_TO_NPM_TOKEN}}
