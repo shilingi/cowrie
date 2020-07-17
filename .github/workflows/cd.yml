@@ -23,25 +23,9 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                 node-version: 12
-                registry-url: https://registry.npmjs.org/
+                registry-url: https://registry.npmjs.org
             - run: |
                 npm ci
                 npm publish --access public
                 env:
                     NODE_AUTH_TOKEN: ${{secrets.PUBLISH_TO_NPM_TOKEN}}
-    publish-github-package-repository:
-        needs: test
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v1
-              with:
-                node-version: 12
-                registry": "https://npm.pkg.github.com/"
-                scope: "@cowrie-io"
-            - run: |
-                npm ci
-                echo registry=https://npm.pkg.github.com/cowrie-io >> .npmrc
-                npm publish
-              env:
-                NODE_AUTH_TOKEN: ${{secrets.PUBLISH_TO_GITHUB_TOKEN}}
