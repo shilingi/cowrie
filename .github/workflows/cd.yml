@@ -1,4 +1,4 @@
-name: Releases Pipeline
+name: Release Pipeline
 
 on:
     release:
@@ -41,7 +41,7 @@ jobs:
                   registry-url: https://npm.pkg.github.com/
                   scope: "@cowrie-io"
             - run: npm ci
-            - run: echo registry=https://npm.pkg.github.com/cowrie-io >> .npmrc
+            - run: "node -p 'const pkg = require(`./package.json`); const data = {...pkg, name: `@cowrie-io/cowrie`, publishConfig: {registry: `https://npm.pkg.github.com/`}}; require(`fs`).writeFileSync(`./package.json`, JSON.stringify(data));'"
             - run: npm publish
               env:
                   NODE_AUTH_TOKEN: ${{secrets.PUBLISH_TO_GITHUB_PACKAGES_TOKEN}}
