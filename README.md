@@ -13,12 +13,12 @@ $ npm install --save @cowrie/cowrie
 Cowrie can be used both in a Node.js environment (server-side) or in a browser environment (client-side). After the installation with npm, add it to your source files using either of the following:
 #### 1. ES6 import statement
 ```javascript
-import Cowrie from "cowrie";
+import Cowrie from "@cowrie/cowrie";
 ```
 
 #### 2. Commonjs require statement
 ```javascript
-const Cowrie = require('cowrie');
+const Cowrie = require('@cowrie/cowrie');
 ```
 
 The following are methods available in the Cowrie object, which also amount to its features. These are some a few things to note when using the utility.
