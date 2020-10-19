@@ -5,6 +5,7 @@ class Cowrie {
     #currency;
     #amount;
     #precision;
+    #format;
 
     #roundingTypes = {
         ROUND_UP: 3,
@@ -19,10 +20,11 @@ class Cowrie {
      * @param {number} amount
      * @param {number} precision
      */
-    constructor(currency, amount, precision = 2) {
+    constructor(currency, amount, precision = 2, format = false) {
         this.#currency = currency;
         this.#amount = amount;
         this.#precision = precision;
+        this.#format = format;
     }
 
     /**
@@ -33,6 +35,15 @@ class Cowrie {
         let amt = this.#amount;
         if (!(amt instanceof Decimal)) {
             amt = new Decimal(this.#amount);
+        }
+
+        if (this.#format) {
+            let [a, b] = amt.toFixed(this.#precision).split(".");
+            a = a.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+            return b !== undefined
+                ? [a, b].join('.')
+                : a;
         }
 
         return amt.toFixed(this.#precision);
@@ -93,7 +104,7 @@ class Cowrie {
      * @return {Array}
      */
     allocate(ratio) {
-        const commonFactor = new Decimal(100).div(ratio.reduce((a, b) => a+b));
+        const commonFactor = new Decimal(100).div(ratio.reduce((a, b) => a + b));
 
         return ratio.map((x, i) => {
             const percentage = commonFactor.times(x);
