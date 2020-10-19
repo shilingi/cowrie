@@ -75,5 +75,31 @@ const c = new Cowrie('KES', 500).allocate([0, 1, 1]).map(x => x.figure);
 console.log({a, b, c, d});
 ```
 
+## `Comma separators`
+```javascript
+const a = new Cowrie('KES', 0, 0, true);
+const b = new Cowrie('KES', 0.123456, 6,true );
+
+const c = new Cowrie('KES', 100, 0, true );
+const d = new Cowrie('KES', 100.123456, 6,true );
+
+const e = new Cowrie('KES', 1000, 0,true );
+const f = new Cowrie('KES', 1000.123456, 6, true );
+
+const g = new Cowrie('KES', 10000, 0,true );
+const h = new Cowrie('KES', 10000.123456, 6,true );
+
+const i = new Cowrie('KES', 100000, 0,true );
+const j = new Cowrie('KES', 100000.123456, 6,true );
+
+const k = new Cowrie('KES', 1000000, 0, true );
+const l = new Cowrie('KES', 1000000.123456, 6,true );
+
+const m = new Cowrie('KES', 10000000, 0,true);
+const n = new Cowrie('KES', 10000000.123456, 6,true );
+
+console.log({a, b, c, d, e, f, g, h, i, j, k, l, m, n})
+```
+
 # License
 MIT
