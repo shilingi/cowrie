@@ -1,11 +1,14 @@
 import Decimal from 'big.js';
 
-/** Money data-type */
+/**
+ * Money data-type
+ * @type {Cowrie}
+ */
 class Cowrie {
-    #currency;
     #amount;
-    #precision;
     #format;
+    #currency;
+    #precision;
 
     #roundingTypes = {
         ROUND_UP: 3,
@@ -16,20 +19,30 @@ class Cowrie {
 
     /**
      * Create money
-     * @param {string} currency
-     * @param {number} amount
-     * @param {number} precision
+     *
+     * @param {string} currency - A valid ISO 4217 codes for the currency
+     * @param {number|string} amount - A string or number for the initial value defaults to zero
+     * @param {number} [precision=2] - A positive integer indicating number of decimal places
+     * @param {boolean} [format=true] - A Flag to format figure as currency
      */
     constructor(currency, amount, precision = 2, format = false) {
+        /** @type {string} */
         this.#currency = currency;
-        this.#amount = amount;
+
+        /** @type {string | number} */
+        this.#amount = parseFloat(amount) || 0;
+
+        /** @type {number} */
         this.#precision = precision;
+
+        /** @type {boolean} */
         this.#format = format;
     }
 
     /**
-     * Retrieve the amount in figures
-     * Defaults to 2 decimal places
+     * Retrieve a formatted amount
+     *
+     * @return {string}
      */
     get figure() {
         let amt = this.#amount;
@@ -38,8 +51,8 @@ class Cowrie {
         }
 
         if (this.#format) {
-            let [a, b] = amt.toFixed(this.#precision).split(".");
-            a = a.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            let [a, b] = amt.toFixed(this.#precision).split('.');
+            a = a.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
             return b !== undefined
                 ? [a, b].join('.')
@@ -50,9 +63,10 @@ class Cowrie {
     }
 
     /**
-     * Add the provided numbers to our current amount
-     * @param  {...any} x
-     * @return {Decimal}
+     * Add the provided numbers to the current or initial value
+     *
+     * @param  {...number} x - A positive or negative number
+     * @return {Cowrie}
      */
     plus(...x) {
         const sum = x.reduce((sigma, x) => {
@@ -64,9 +78,10 @@ class Cowrie {
 
 
     /**
-     * Subtract the provided numbers to our current amount
-     * @param  {...any} x
-     * @return {Decimal}
+     * Subtract the provided numbers to the current or initial value
+     *
+     * @param  {...number} x - A positive or negative number
+     * @return {Cowrie}
      */
     minus(...x) {
         const difference = x.reduce((sigma, x) => {
@@ -77,9 +92,10 @@ class Cowrie {
     }
 
     /**
-     * Multiply the current amount by a given factor
-     * @param  {number} x
-     * @return {Decimal}
+     * Multiply the current or initial value by a given factor
+     *
+     * @param  {number} x - A positive or negative number
+     * @return {Cowrie}
      */
     times(x) {
         const product = new Decimal(this.#amount).times(x);
@@ -88,9 +104,10 @@ class Cowrie {
     }
 
     /**
-     * Divide the current amount by a given quotient
-     * @param  {number} x
-     * @return {Decimal}
+     * Divide the current or initial value by a given quotient
+     *
+     * @param  {number} x - A positive or negative number
+     * @return {Cowrie}
      */
     divide(x) {
         const quotient = new Decimal(this.#amount).div(x);
@@ -99,9 +116,10 @@ class Cowrie {
     }
 
     /**
-     * Split the current amount by the given percentage ratio
-     * @param  {Array} ratio
-     * @return {Array}
+     * Split the current amount by the given allocation percentage or ratio
+     *
+     * @param  {Array} ratio - An array representing the fractional allocations e.g ratio of 2:1 => [2, 1]
+     * @return {Array.<Cowrie>}
      */
     allocate(ratio) {
         const commonFactor = new Decimal(100).div(ratio.reduce((a, b) => a + b));
